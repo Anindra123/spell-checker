@@ -1,0 +1,53 @@
+#root {
+  max-width: 1920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.heading {
+  margin-top: 2rem;
+}
+
+.input-group {
+  width: 40%;
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.input-container {
+  display: flex;
+
+  width: 100%;
+}
+
+.input-text-area {
+  flex-grow: 1;
+  border-radius: 0.5rem;
+  padding: 0.8rem 0;
+  padding-left: 0.5rem;
+}
+
+.btn-group {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.btn-group > .submit-btn {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: blue;
+  color: whitesmoke;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
