@@ -31,10 +31,12 @@ class DistanceAlgo
 
         $matrix[0][0] = 0;
 
+        // initialize first column to have the cost of deleting operation 
         for ($col = 1; $col < $cols; $col++) {
             $matrix[0][$col] = $col;
         }
 
+        //intialize first row to have the cost of inserting operation
         for ($row = 1; $row < $rows; $row++) {
             $matrix[$row][0] = $row;
         }
@@ -43,10 +45,21 @@ class DistanceAlgo
             for ($row = 1; $row < $rows; $row++) {
                 $previous_col = $matrix[$row][$col - 1];
                 $previous_row = $matrix[$row - 1][$col];
-                $previous_corner  = $matrix[$row - 1][$col - 1];
+                $previous_corner  = $matrix[$row - 1][$col - 1]; //solution of current subproblem
 
+                //get the minimum of the three operation insert,delete and replace 
+                //accroding to laveshtien theorem
                 $minimum_val = min($previous_col, $previous_row, $previous_corner);
+                
+                /*
+                  - if the character matches
+                  -     take the corner value of the matrix which is the solution of the current subproblem
+                  - else
+                  -     take the minimum of the three operation + 1 according to laveshtien distance
+                 
+                  - caching the value by setting it in the matrix for further usage
 
+                */
                 $matrix[$row][$col] = $target_characters[$col] === $input_charaters[$row] ?
                     $previous_corner : $minimum_val + 1;
             }
