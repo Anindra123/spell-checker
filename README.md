@@ -4,4 +4,4 @@ Spell checker app implemented using Wagner-fisher distance algorithm between two
 
 ## Demo
 
-![demo](./example/example.gif)
+<img src="./example/example.gif" width="1000" >
