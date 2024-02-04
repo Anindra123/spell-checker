@@ -9,16 +9,16 @@ class DistanceAlgo
     private $suggestion = [];
     public function __construct(string $input_word)
     {
-        $this->words_dictionary = fopen("./data/wordlist.txt", "r");
-        $this->words_string = fread($this->words_dictionary, filesize("./data/wordlist.txt"));
+        
 
-        $this->word_list = explode("\n", trim($this->words_string));
+        $json_file = file_get_contents("./data/words.json");
+        $this->word_list = json_decode($json_file);
         $this->input_word = $input_word;
     }
 
     public function calculate_distance(string $compare): int
     {
-        if ($this->input_word === $compare) return -1;
+        if ($this->input_word === trim($compare)) return -1;
 
         $input = "_" . $this->input_word;
         $compare = "_" . $compare;
@@ -59,8 +59,13 @@ class DistanceAlgo
     function get_word_suggestions(int $suggestion_length): string
     {
         foreach ($this->word_list as $key => $word) {
-            if ($this->calculate_distance($word) === -1) return json_encode(["status" => true]);
-            array_push($this->suggestion, ["word" => $word, "length" => $this->calculate_distance($word)]);
+           
+            
+            if ($this->calculate_distance($word) < 0){
+
+                return json_encode(["status" => true]);
+            }
+            array_push($this->suggestion, ["word" => trim($word), "length" => $this->calculate_distance($word)]);
         }
 
         usort($this->suggestion, fn ($first_array, $second_array) => $first_array["length"]

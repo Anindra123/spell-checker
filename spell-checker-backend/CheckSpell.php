@@ -4,6 +4,8 @@ require_once('./DistanceAlgo.php');
 
 $input_word = $_GET["input_word"] ?? "";
 
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header('Content-type: application/json'); 
 
 if (strlen($input_word) === 0) {
     echo json_encode(["error_msg" => "parameter 'input_word' is not provided"]);
